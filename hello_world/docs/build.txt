@@ -1,0 +1,11 @@
+
+conda activate esp
+
+. ~/esp/esp-idf/export.sh
+
+idf.py clean
+
+idf.py build
+
+idf.py -p /dev/cu.SLAB_USBtoUART flash monitor
+

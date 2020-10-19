@@ -1,12 +1,21 @@
 make sure you have python evironment setup somewhere
 
-venv
-or 
-conda
+step1) make sure you have esp conda environment
 
-activate the env first
+    esp as env name -- in conda
 
-. ./esp/esp-idf/export.sh
-or 
-source ./esp/esp-idf/export.sh
+    install all esp python tools
+    cd ~/esp/esp-idf
+    ./install.sh
+
+
+step2) 
+
+    conda activate esp
+
+
+step3)  active the idf environment
+    . ~/esp/esp-idf/export.sh
+    or 
+    source ~/esp/esp-idf/export.sh
 
