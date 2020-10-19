@@ -35,3 +35,31 @@ WALKING_DOWNSTAIRS       0.70      0.77      0.73       380
           accuracy                           0.76      2947
          macro avg       0.75      0.77      0.75      2947
       weighted avg       0.77      0.76      0.76      2947
+
+
+still have trouble after flash
+
+I (0) cpu_start: Starting scheduler on APP CPU.
+I (486) MAIN: setup start
+W (486) inspect: mark1 143396 143396 0
+W (496) inspect: mark2 143144 143144 0
+W (496) inspect: kTensorArenaSize 150948
+8 bytes lost due to alignment. To avoid this loss, please make sure the tensor_arena is 16 bytes aligned.
+W (516) inspect: SimpleMemoryAllocator:buffer_head 0x3ffb3d00
+W (516) inspect: SimpleMemoryAllocator:buffer_tail 0x3ffd8a9c
+W (526) inspect: MicroAllocator::StartModelAllocation 142928 142928 0
+W (536) inspect: MicroAllocator::StartModelAllocation:InitScratchBufferData 142928 142928 0
+W (546) inspect: MicroAllocator::StartModelAllocation:AllocateTfLiteEvalTensors 142928 142928 0
+W (546) inspect: MicroAllocator::AllocateTfLiteEvalTensors 142928 142928 0
+W (556) inspect: MicroAllocator::AllocateTfLiteEvalTensors:GetSubGraphFromModel 142928 142928 0
+W (566) inspect: alloc_count 332
+W (576) inspect: alloc_bytes 3984
+W (576) inspect: alloc_alignof 4
+W (586) inspect: MicroAllocator::StartModelAllocation:AllocateNodeAndRegistrations 142928 142928 0
+W (586) inspect: MicroAllocator::StartModelAllocation:PrepareNodeAndRegistrationDataFromFlatbuffer 142928 142928 0
+W (606) inspect: MicroAllocator::StartModelAllocation:done 142928 142928 0
+Failed to populate a temp TfLiteTensor struct from flatbuffer data!
+../components/tfmicro/tensorflow/lite/micro/kernels/dequantize.cc:55 input != nullptr was not true.
+Node DEQUANTIZE (number 0f) failed to prepare with status 1
+AllocateTensors() failed
+
