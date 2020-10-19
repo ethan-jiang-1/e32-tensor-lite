@@ -1,0 +1,5 @@
+xxd -i model_xxx.tlite model_xxx.cc
+
+copy model_xxx.cc to model.cc
+
+idf.py -p /dev/cu.SLAB_USBtoUART flash monitor

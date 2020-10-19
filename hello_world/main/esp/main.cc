@@ -14,10 +14,19 @@ limitations under the License.
 ==============================================================================*/
 
 #include "../main_functions.h"
+#include "esp_log.h"
+
+#define TAG "MAIN"
 
 extern "C" void app_main(void) {
+  ESP_LOGI(TAG, "setup start");
   setup();
-  while (true) {
+  ESP_LOGI(TAG, "Setup done");
+
+  for (int i=0; i<30; i++) {
+    ESP_LOGI(TAG, "loop %d", i);
     loop();
   }
+
+  ESP_LOGI(TAG, "end of loop, ESP32 stopped");
 }

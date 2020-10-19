@@ -1,0 +1,12 @@
+make sure you have python evironment setup somewhere
+
+venv
+or 
+conda
+
+activate the env first
+
+. ./esp/esp-idf/export.sh
+or 
+source ./esp/esp-idf/export.sh
+

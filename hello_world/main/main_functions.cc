@@ -36,15 +36,25 @@ int inference_count = 0;
 // Create an area of memory to use for input, output, and intermediate arrays.
 // Minimum arena size, at the time of writing. After allocating tensors
 // you can retrieve this value by invoking interpreter.arena_used_bytes().
-const int kModelArenaSize = 2468;
+//const int _kModelArenaSize = 2468;
 // Extra headroom for model + alignment + future interpreter changes.
-const int kExtraArenaSize = 560 + 16 + 100;
-const int kTensorArenaSize = kModelArenaSize + kExtraArenaSize;
+//const int _kExtraArenaSize = 560 + 16 + 100;
+//const int kTensorArenaSize = _kModelArenaSize + _kExtraArenaSize;
+
+//Ethan alter the number by real result
+const int kTensorArenaSize = 50316 * 3;
 uint8_t tensor_arena[kTensorArenaSize];
 }  // namespace
 
+
+extern "C" void inspect_memory(const char* mark);
+extern "C" void inspect_number(const char* mark, size_t num);
+extern "C" void inspect_pointer(const char* mark, void* p);
+
 // The name of this function is important for Arduino compatibility.
 void setup() {
+  inspect_memory("mark1");
+
   // Set up logging. Google style is to avoid globals or statics because of
   // lifetime uncertainty, but since this has a trivial destructor it's okay.
   // NOLINTNEXTLINE(runtime-global-variables)
@@ -62,11 +72,22 @@ void setup() {
     return;
   }
 
+  inspect_memory("mark2");
+
+
   // This pulls in all the operation implementations we need.
   // NOLINTNEXTLINE(runtime-global-variables)
   static tflite::AllOpsResolver resolver;
 
   // Build an interpreter to run the model with.
+
+  //TODO: TOSTUDY
+  // Ethan: this is where the intepreter initialized (should study how here -- it will initial simple allocator)
+  //Runtime error as below:
+  //Failed to allocate tail memory. Requested: 30864, available 3020, missing: 27844
+  //Failed to allocate memory for context->eval_tensors, 30864 bytes required
+  //Failed starting model allocation.  
+  inspect_number("kTensorArenaSize", kTensorArenaSize);
   static tflite::MicroInterpreter static_interpreter(
       model, resolver, tensor_arena, kTensorArenaSize, error_reporter);
   interpreter = &static_interpreter;
@@ -78,9 +99,12 @@ void setup() {
     return;
   }
 
+  inspect_memory("mark3");
+
   // Obtain pointers to the model's input and output tensors.
-  input = interpreter->input(0);
-  output = interpreter->output(0);
+  //Ethan temp disable input/output tensor as our new tensors are different
+  //input = interpreter->input(0);
+  //output = interpreter->output(0);
 
   // Keep track of how many inferences we have performed.
   inference_count = 0;
@@ -88,6 +112,10 @@ void setup() {
 
 // The name of this function is important for Arduino compatibility.
 void loop() {
+  inspect_memory("loop");
+  if (true)
+    return;
+
   // Calculate an x value to feed into the model. We compare the current
   // inference_count to the number of inferences per cycle to determine
   // our position within the range of possible x values the model was
