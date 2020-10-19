@@ -1,0 +1,37 @@
+16 inputs and 1 layer
+
+
+Precision: 77.09152994815848%
+Recall: 75.97556837461825%
+f1_score: 76.00003702868106%
+
+Confusion Matrix:
+[[382  67  45   0   2   0]
+ [180 236  42   5   8   0]
+ [ 92  35 293   0   0   0]
+ [  5   1   0 369 116   0]
+ [  7   1   0  75 449   0]
+ [ 11  16   0   0   0 510]]
+
+Confusion matrix (normalised to 2947 of total test data):
+[[12.962334    2.2734985   1.5269766   0.          0.06786563  0.        ]
+ [ 6.1079063   8.008144    1.4251782   0.16966406  0.2714625   0.        ]
+ [ 3.1218188   1.1876484   9.942314    0.          0.          0.        ]
+ [ 0.16966406  0.03393281  0.         12.521208    3.936206    0.        ]
+ [ 0.2375297   0.03393281  0.          2.544961   15.235832    0.        ]
+ [ 0.37326095  0.542925    0.          0.          0.         17.305735  ]]
+Note: training and testing data is not equally distributed amongst classes, 
+so it is normal that more than a 6th of the data is correctly classifier in the last category.
+Inputs  ['body_acc_x_', 'body_acc_y_', 'body_acc_z_', 'total_acc_x_', 'total_acc_y_', 'total_acc_z_']
+                    precision    recall  f1-score   support
+
+           WALKING       0.77      0.56      0.65       677
+  WALKING_UPSTAIRS       0.50      0.66      0.57       356
+WALKING_DOWNSTAIRS       0.70      0.77      0.73       380
+           SITTING       0.75      0.82      0.79       449
+          STANDING       0.84      0.78      0.81       575
+            LAYING       0.95      1.00      0.97       510
+
+          accuracy                           0.76      2947
+         macro avg       0.75      0.77      0.75      2947
+      weighted avg       0.77      0.76      0.76      2947
