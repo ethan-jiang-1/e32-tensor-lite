@@ -1,0 +1,24 @@
+dump tflite to c style arrays:
+
+xxd -i model_xxx.tlite model_xxx.cc
+
+copy model_xxx.cc to model.cc
+
+
+visualize tlite in html
+
+https://stackoverflow.com/questions/56885007/visualize-tflite-graph-and-get-intermediate-values-of-a-particular-node
+
+TensorFlow Lite models can be visualized using the visualize.py script in the TensorFlow Lite repository. You just need to:
+
+Clone the TensorFlow repository
+
+Run the visualize.py script with bazel:
+
+  bazel run //tensorflow/lite/tools:visualize \
+       /tmp/test/model.tflite \
+       /tmp/vmodel.html
+
+
+the result can be find in brower here:
+file:///private/tmp/vmodel.html

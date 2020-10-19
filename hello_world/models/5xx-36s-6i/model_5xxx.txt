@@ -1,0 +1,51 @@
+this model only has 5xx nodes, but still too big to fit in esp32
+
+the module has:
+36 inputs (instead of 128)
+6 
+
+
+update env, default_inputs: 6 default_model_save_iter: 500
+*** Flags defined:  ['SAMPLE_NUM_32', 'LTSM_LAYER_1']
+ inputs (number of input vectors):  6
+ model_save_iter (which step to choose convert/predit in the middle): 500
+
+
+FINAL RESULT: Batch Loss = 0.6527801752090454, Accuracy = 0.8113335371017456
+Testing Accuracy: 81.13335371017456%
+
+Precision: 81.66074399314745%
+Recall: 81.13335595520869%
+f1_score: 81.29041756954909%
+
+Confusion Matrix:
+[[411  61  23   0   1   0]
+ [110 324  34   3   0   0]
+ [ 24  23 373   0   0   0]
+ [  2  20   0 370  99   0]
+ [  0  57   0  72 403   0]
+ [  0  27   0   0   0 510]]
+
+Confusion matrix (normalised to 2947 of total test data):
+[[13.946385    2.0699017   0.7804547   0.          0.03393281  0.        ]
+ [ 3.7326093  10.994232    1.1537156   0.10179844  0.          0.        ]
+ [ 0.8143875   0.7804547  12.656939    0.          0.          0.        ]
+ [ 0.06786563  0.6786562   0.         12.5551405   3.3593483   0.        ]
+ [ 0.          1.9341704   0.          2.4431624  13.674924    0.        ]
+ [ 0.          0.916186    0.          0.          0.         17.305735  ]]
+Note: training and testing data is not equally distributed amongst classes, 
+so it is normal that more than a 6th of the data is correctly classifier in the last category.
+Inputs  ['body_acc_x_', 'body_acc_y_', 'body_acc_z_', 'total_acc_x_', 'total_acc_y_', 'total_acc_z_']
+                    precision    recall  f1-score   support
+
+           WALKING       0.83      0.75      0.79       547
+  WALKING_UPSTAIRS       0.69      0.63      0.66       512
+WALKING_DOWNSTAIRS       0.89      0.87      0.88       430
+           SITTING       0.75      0.83      0.79       445
+          STANDING       0.76      0.80      0.78       503
+            LAYING       0.95      1.00      0.97       510
+
+          accuracy                           0.81      2947
+         macro avg       0.81      0.81      0.81      2947
+      weighted avg       0.81      0.81      0.81      2947
+
